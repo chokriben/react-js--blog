@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { HashRouter, Route, Switch } from "react-router-dom";
+import Post from "./pages/posts/Post";
+import Posts from "./pages/posts/Posts";
+import Account from "./pages/users/Account";
+import Login from "./pages/users/Login";
+import Profile from "./pages/users/Profile";
+import Register from "./pages/users/Register";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <div className="container-fluid">
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/posts" component={Posts} />
+          <Route exact path="/posts/:id" component={Post} />
+          <Route exact path="/account" component={Account} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
+        </Switch>
+      </div>
+    </HashRouter>
   );
 }
 
