@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import Post from "./pages/posts/Post";
@@ -9,9 +9,14 @@ import Profile from "./pages/users/Profile";
 import Register from "./pages/users/Register";
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
+import { hasAuthenticated } from './services/AuthApi'
+import Auth from "./contexts/Auth";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated());
   return (
+    <Auth.Provider value={{isAuthenticated}} >
       <HashRouter>
         <div className="container-fluid">
           <Navbar />
@@ -19,13 +24,14 @@ function App() {
             <Route exact path="/" component={Homepage} />
             <Route exact path="/posts" component={Posts} />
             <Route exact path="/posts/:id" component={Post} />
-            <Route exact path="/account" component={Account} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
+            <AuthenticatedRoute path="/account" component={Account} />
+            <AuthenticatedRoute path="/profile" component={Profile} />
           </Switch>
         </div>
       </HashRouter>
+    </Auth.Provider>
   );
 }
 
