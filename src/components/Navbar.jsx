@@ -4,6 +4,11 @@ import Auth from "../contexts/Auth";
 
 const Navbar = () => {
   const { isAuthenticated } = useContext(Auth);
+
+  const handleLogout = () => {
+    console.log('on est deconnecté');
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <span className="navbar-brand">Ben Open</span>
@@ -43,7 +48,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <button className="btn btn-danger">Déconnexion</button>
+                <button className="btn btn-danger" onClick={handleLogout}>Déconnexion</button>
               </li>
             </>
           )}

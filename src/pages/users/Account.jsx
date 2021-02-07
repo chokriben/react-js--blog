@@ -17,7 +17,7 @@ const Account = (props) => {
       <div className="tabs">
         <ul>
           {tabs.map((tab, index) => (
-            <li
+            <li key={index}
               className={`tabs-pane ${
                 curentTab.name === tab.tabKey ? "active" : ""
               }`}
