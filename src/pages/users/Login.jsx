@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import Auth from "../../contexts/Auth";
+import { login } from "../../services/AuthApi";
 
 const Login = ({ history }) => {
-  const { isAuthenticated } = useContext(Auth);
+  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
 
   const [user, setUser] = useState({
     username: "",
@@ -15,12 +16,16 @@ const Login = ({ history }) => {
     setUser({...user, [name]: value})
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    console.group();
-    console.log(user);
-    console.groupEnd();
+    try {
+      const response = await login(user);
+      setIsAuthenticated(response);
+      history.replace('/account');
+    } catch ({ response }) {
+      console.log(response);
+    }
   }
 
   useEffect(() => {
