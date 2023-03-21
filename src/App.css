@@ -2,6 +2,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+.email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
 .card .border-info .mb-3 {
   max-width: 20rem;

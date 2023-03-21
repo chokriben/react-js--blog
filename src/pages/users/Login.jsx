@@ -40,7 +40,9 @@ const Login = ({ history }) => {
         <fieldset>
           <legend>Se connecter</legend>
           <div className="form-group">
+            <div className="form-group">
             <label htmlFor="email">Email</label>
+            </div>
             <input
               type="text"
               name="username"
